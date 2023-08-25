@@ -17,7 +17,7 @@ const RegisterComponent = () => {
    let res= await RegisterApi(credentials.email,credentials.password)
    toast.success('Account Created!')
    navigate('/home')
-  console.log(res)
+   localStorage.setItem("userEmail",res.user.email)
  } catch (error) {
   console.log(error.message)
   toast.error('Cannot Create your Account')

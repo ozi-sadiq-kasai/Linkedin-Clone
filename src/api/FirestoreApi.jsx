@@ -26,11 +26,11 @@ const dbRef = collection(firestore, 'posts');
 
 
 // send posts to firestore
-export const postStatus = (status) => {
-  if (status.trim() !== '') {
-    const object = {
-      status: status,
-    };
+export const postStatus = (object) => {
+  // if (status.trim() !== '') {
+  //   const object = {
+  //     status: status,
+  //   };
 
     addDoc(dbRef, object)
       .then(() => {
@@ -43,7 +43,7 @@ export const postStatus = (status) => {
   // else {
   //   toast.error('Status cannot be empty'); // Notify when status is empty
   // }
-};
+
 
 // get posts from firestore
 export const getStatus =(setAllStatus) => {

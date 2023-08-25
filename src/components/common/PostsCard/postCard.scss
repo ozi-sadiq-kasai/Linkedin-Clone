@@ -1,0 +1,28 @@
+.posts-card{
+
+ width:550px;
+ padding-bottom: 20px;
+ height: auto;
+ background-color: whitesmoke;
+ margin-top: 30px;
+ border: 1px solid #d0cece;
+ border-radius: 7px;
+ display: flex;
+ flex-direction: column;
+ 
+ .status{
+  text-align: left;
+  font-family: system-ui,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.9);
+  margin-top: -30px;
+ }
+ .timestamp{
+  font-size: 12px;
+  font-family: system-ui,sans-serif;
+  color: rgba(0,0,0,0.6);
+  padding: 20px;
+   margin-top: -15px;
+ }
+}

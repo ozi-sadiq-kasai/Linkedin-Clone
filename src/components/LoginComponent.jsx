@@ -16,7 +16,7 @@ const LoginComponent = () => {
    let res= await LoginApi(credentials.email,credentials.password)
    navigate('/home')
    toast.success('Sign in Successful')
-  console.log(res)
+   localStorage.setItem("userEmail",res.user.email)
  } catch (error) {
   console.log(error.message)
   toast.error('Wrong Email or Password')
