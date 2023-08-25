@@ -3,8 +3,7 @@ import PostStatus from "./common/PostUpdate/PostStatus"
 const HomeComponent = () => {
 
   return (
-    <div>
-      <h1>Home Component</h1>
+    <div className="home-component">
       <PostStatus/>
     </div>
   )
