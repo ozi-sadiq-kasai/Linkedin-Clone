@@ -1,17 +1,23 @@
 import React from 'react'
 import './PostStatus.scss'
 import ModalComponent from '../Modal'
-import { useState } from 'react'
-import { postStatus } from '../../../api/FirestoreApi'
+import { useState, useMemo } from 'react'
+import { postStatus,getStatus } from '../../../api/FirestoreApi'
 
 const PostStatus = () => {
  const [modalOpen, setModalOpen] = useState(false);
  const [status, setStatus] = useState('');
+ const [allStatus, setAllStatus] = useState([]);
 
  const sendStatus =  () =>{
    postStatus(status);
 
  }
+ 
+ useMemo(()=>{
+  getStatus(setAllStatus)
+ },[])
+
   return (
     <div className="post-status-main">
      <div className="post-status">
@@ -24,6 +30,15 @@ const PostStatus = () => {
             status={status}
             sendStatus={sendStatus}
             />
+     <div>
+       {allStatus.map((post)=>{
+       return(
+       <div>
+        <p>{post.status}</p>
+       </div>
+       )
+      })}
+     </div>
     </div>
   )
 }
