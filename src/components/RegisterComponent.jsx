@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { RegisterApi, GoogleSignInApi} from "../api/AuthApi"
+import { postUserData } from '../api/FirestoreApi'
 import linkedinLogo from "../assets/linkedinLogo.png"
 import "../Sass/LoginComponent.scss"
 import { toast } from "react-toastify"
@@ -12,10 +13,11 @@ const RegisterComponent = () => {
  let navigate = useNavigate()
  const [credentials,setCredentials] = useState({})
  
- const login = async () =>{
+ const register = async () =>{
  try {
    let res= await RegisterApi(credentials.email,credentials.password)
    toast.success('Account Created!')
+   postUserData({name:credentials.name,email:credentials.email})
    navigate('/home')
    localStorage.setItem("userEmail",res.user.email)
  } catch (error) {
@@ -39,6 +41,16 @@ const RegisterComponent = () => {
     <div className="login-wrapper">
       <h1 className="heading">Make the most of your professional life</h1>
       <div className="auth-inputs">
+
+       <label className="label-name"htmlFor="Name">Your Name</label>
+        <input 
+         type="text"
+         className='common-inputs'
+         id="name"
+         name="name"
+         onChange= {(event)=> setCredentials({...credentials,name:event.target.value})}
+          />
+
        <label className="label-email"htmlFor="Email">Email or phone number</label>
         <input 
          type="email"
@@ -47,6 +59,7 @@ const RegisterComponent = () => {
          name="email"
          onChange= {(event)=> setCredentials({...credentials,email:event.target.value})}
           />
+
          <label className="label-password" htmlFor="password">Password (6 or more characters)</label>
          <input 
           type="password"
@@ -58,7 +71,7 @@ const RegisterComponent = () => {
       </div>
       <div className="login-policy">
         <p>By clicking Agree & Join, you agree to the Linkedin <span>User Agreement Privacy Policy</span> and <span>Cookie Policy</span></p>
-        <button onClick={login}className="login-btn">Agree & Join</button>
+        <button onClick={register}className="login-btn">Agree & Join</button>
       </div>
      
 

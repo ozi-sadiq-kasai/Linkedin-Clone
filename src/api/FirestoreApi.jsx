@@ -23,6 +23,7 @@ import { toast } from 'react-toastify';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 
 const dbRef = collection(firestore, 'posts');
+const userRef = collection(firestore, 'users');
 
 
 // send posts to firestore
@@ -40,9 +41,6 @@ export const postStatus = (object) => {
         toast.error(error.message); // Display the error message
       });
   } 
-  // else {
-  //   toast.error('Status cannot be empty'); // Notify when status is empty
-  // }
 
 
 // get posts from firestore
@@ -50,5 +48,27 @@ export const getStatus =(setAllStatus) => {
  onSnapshot(dbRef,(response) =>{
   setAllStatus(response.docs.map((doc)=>{
    return {...doc.data(),id:doc.id}}))
+ })
+}
+
+// send users data to firestore
+export const postUserData = (object) => {
+ addDoc(userRef,object)
+ .then(() => {})
+ .catch((err) =>{
+  console.log(err)
+ })
+}
+
+// export current user and email to local storage
+export const getCurrentUser = (setCurrentUser) => {
+ let currEmail = localStorage.getItem('userEmail')
+  onSnapshot(userRef,(response) =>{
+  setCurrentUser(response.docs.map((doc)=>{
+   return {...doc.data(),userID:doc.id}
+  }).filter((item) =>{
+   return item.email ===localStorage.getItem("userEmail")
+  })[0]
+   )
  })
 }

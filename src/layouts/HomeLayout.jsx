@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useMemo, useState} from 'react'
 import Home from "../Pages/Home"
+import { getCurrentUser } from "../api/FirestoreApi"
 import Topbar from "../components/common/Topbar"
 const HomeLayout = () => {
+ const [currentUser, setCurrentUser] = useState({})
+ useMemo(()=>{getCurrentUser(setCurrentUser)},[])
   return (
     <div>
      <Topbar/>
-      <Home/>
+      <Home currentUser={currentUser}/>
     </div>
   )
 }

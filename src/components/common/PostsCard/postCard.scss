@@ -16,13 +16,21 @@
   font-size: 14px;
   font-weight: 400;
   color: rgba(0,0,0,0.9);
-  margin-top: -30px;
+  // margin-top: -30px;
+  margin-left: 20px;
  }
- .timestamp{
+ .timestamp,.name{
   font-size: 12px;
   font-family: system-ui,sans-serif;
   color: rgba(0,0,0,0.6);
-  padding: 20px;
-   margin-top: -15px;
+ }
+ .name{
+  font-weight: 600;
+ }
+ .post-details{
+  display: flex;
+  margin-left: 20px;
+  width: 40%;
+  justify-content: space-evenly;
  }
 }
